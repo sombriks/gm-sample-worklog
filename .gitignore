@@ -1,3 +1,7 @@
-*.log
-*.class
 node_modules
+.settings
+.gradle
+*.class
+*.log
+build
+bin

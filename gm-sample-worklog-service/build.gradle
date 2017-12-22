@@ -1,0 +1,10 @@
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = "br.com.gm.worklog.EntryPoint"
