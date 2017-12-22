@@ -1,10 +1,32 @@
-
+// https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#getting-started-gradle-installation
+buildscript {
+	repositories {
+		jcenter()
+		maven { url 'http://repo.spring.io/snapshot' }
+		maven { url 'http://repo.spring.io/milestone' }
+	}
+	dependencies {
+		classpath 'org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT'
+	}
+}
 
 apply plugin: 'java'
+// .classpath and .project are needed by vscode-java
 apply plugin: 'eclipse'
 apply plugin: 'application'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+repositories {
+	jcenter()
+	maven { url "http://repo.spring.io/snapshot" }
+	maven { url "http://repo.spring.io/milestone" }
+}
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+}
 
 mainClassName = "br.com.gm.worklog.EntryPoint"
