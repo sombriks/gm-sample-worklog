@@ -1,0 +1,12 @@
+{
+  "name": "gm-sample-worklog-client",
+  "version": "1.0.0",
+  "description": "sample worklog client",
+  "main": "index.js",
+  "scripts": {
+    "dev": "budo src/main.js:build.js -o -l"
+  },
+  "keywords": [],
+  "author": "Leonardo Silveira <somblriks@gmail.com>",
+  "license": "ISC"
+}
