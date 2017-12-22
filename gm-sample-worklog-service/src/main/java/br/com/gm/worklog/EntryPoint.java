@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gm.worklog.resource.UserResource;
+import br.com.gm.worklog.resource.WorklogResource;
 
 @RestController
 @SpringBootApplication
@@ -15,10 +16,17 @@ public class EntryPoint {
   @Autowired
   private UserResource user;
 
+  @Autowired
+  private WorklogResource worklog;
 
   @RequestMapping("/user")
   public UserResource getUser() {
     return user;
+  }
+
+  @RequestMapping("/worklog")
+  public WorklogResource getWorklog() {
+    return worklog;
   }
 
   @RequestMapping("/status")
