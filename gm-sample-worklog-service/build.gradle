@@ -16,6 +16,8 @@ plugins {
 }
 
 flyway {
+	// TODO ter a regra do flyway aqui é cômodo, 
+	// mas nos deixa com dois pontos de atenção para os dados de acesso ao banco
     url = 'jdbc:h2:file:./gm-worklog'
     user = 'sa'
 }
@@ -39,9 +41,9 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE"
     testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
 	// https://mvnrepository.com/artifact/com.h2database/h2
-	testCompile group: 'com.h2database', name: 'h2', version: '1.3.148'
+	compile group: 'com.h2database', name: 'h2', version: '1.3.148'
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
-	testCompile group: 'org.flywaydb', name: 'flyway-core', version: '5.0.3'
+	compile group: 'org.flywaydb', name: 'flyway-core', version: '5.0.3'
 	// https://spring.io/guides/gs/accessing-data-jpa/
     compile "org.springframework.boot:spring-boot-starter-data-jpa:1.5.9.RELEASE"
 
