@@ -18,6 +18,9 @@ correctly due a limitation about having top-level configuration files. Also just
 So, the eclipse plugin was added to build.gradle in order to generate .classpath and .project files. Then the plugin
 started to work properly.
 
+For unknown reason the vascode-java plugin was unable to find javax.persistence packages. However the application just 
+ran fine. 
+
 ## Tech stack
 
 - [Spring Boot](https://projects.spring.io/spring-boot/)

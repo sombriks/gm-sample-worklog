@@ -25,7 +25,6 @@ flyway {
 apply plugin: 'java'
 // .classpath and .project are needed by vscode-java
 apply plugin: 'eclipse'
-apply plugin: 'application'
 apply plugin: 'org.springframework.boot'
 
 sourceCompatibility = 1.8
@@ -40,13 +39,13 @@ repositories {
 dependencies {
     compile "org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE"
     testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
+	// https://spring.io/guides/gs/accessing-data-jpa/
+    compile "org.springframework.boot:spring-boot-starter-data-jpa:1.5.9.RELEASE"
+	// https://projectlombok.org/features/Data
+	compileOnly "org.projectlombok:lombok:1.16.16"
 	// https://mvnrepository.com/artifact/com.h2database/h2
 	compile group: 'com.h2database', name: 'h2', version: '1.3.148'
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
 	compile group: 'org.flywaydb', name: 'flyway-core', version: '5.0.3'
-	// https://spring.io/guides/gs/accessing-data-jpa/
-    compile "org.springframework.boot:spring-boot-starter-data-jpa:1.5.9.RELEASE"
 
 }
-
-mainClassName = "br.com.gm.worklog.EntryPoint"

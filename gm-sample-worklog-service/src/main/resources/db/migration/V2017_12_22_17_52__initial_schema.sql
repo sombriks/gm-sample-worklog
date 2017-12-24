@@ -1,5 +1,4 @@
--- creating core tables 
--- defining a few rules
+-- initial structure
 
 create table user (
   userid integer primary key auto_increment,
@@ -36,8 +35,10 @@ create table eventtype (
 create table eventlog (
   eventlogid integer primary key auto_increment,
   eventlogcreation datetime not null default now(),
+  userid integer not null,
   eventtypeid integer not null,
   eventlogdescription varchar(255) not null,
-
+  
+  foreign key (userid) references user(userid) on delete cascade,
   foreign key (eventtypeid) references eventtype(eventtypeid)
 );

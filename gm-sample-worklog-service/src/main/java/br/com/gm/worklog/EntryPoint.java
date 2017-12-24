@@ -10,20 +10,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.gm.worklog.resource.UserResource;
-import br.com.gm.worklog.resource.WorklogResource;
+import br.com.gm.worklog.resource.WorkLogResource;
+import br.com.gm.worklog.resource.EventLogResource;
+
 
 @RestController
 @SpringBootApplication
 public class EntryPoint {
 
   @Autowired
-  Environment env;
+  private Environment env;
 
   @Autowired
   private UserResource user;
 
   @Autowired
-  private WorklogResource worklog;
+  private WorkLogResource workLog;
+
+  @Autowired
+  private EventLogResource eventLog;
 
   @RequestMapping("/user")
   public UserResource getUser() {
@@ -31,8 +36,13 @@ public class EntryPoint {
   }
 
   @RequestMapping("/worklog")
-  public WorklogResource getWorklog() {
-    return worklog;
+  public WorkLogResource getWorkLog() {
+    return workLog;
+  }
+
+  @RequestMapping("/eventlog")
+  public EventLogResource getEventLog() {
+    return eventLog;
   }
 
   @RequestMapping("/status")
@@ -42,6 +52,7 @@ public class EntryPoint {
 
   @PostConstruct
   public void initDb() {
+    System.out.println(env.getProperty("app.name"));
     Flyway flyway = new Flyway();
     String dbUrl = env.getProperty("database.url");
     String dbUsername = env.getProperty("database.username");
@@ -51,8 +62,6 @@ public class EntryPoint {
   }
 
   public static void main(String... args) {
-    System.out.println("Alive and kicking!");
     SpringApplication.run(EntryPoint.class, args);
-
   }
 }
