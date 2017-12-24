@@ -33,7 +33,7 @@ public class EventLog {
 
   @ManyToOne
   @JoinColumn(name="userid")
-  private User user;
+  private VwUser user;
 
   @ManyToOne
   @JoinColumn(name="eventtypeid")
