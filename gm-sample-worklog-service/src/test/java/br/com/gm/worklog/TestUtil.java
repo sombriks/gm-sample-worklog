@@ -1,0 +1,52 @@
+package br.com.gm.worklog;
+
+import org.apache.commons.codec.digest.DigestUtils;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import br.com.gm.worklog.business.Users;
+import br.com.gm.worklog.business.WorkLogs;
+import br.com.gm.worklog.model.LogStatus;
+import br.com.gm.worklog.model.User;
+import br.com.gm.worklog.model.VwUser;
+import br.com.gm.worklog.model.WorkLog;
+import java.sql.Timestamp;
+
+@Component
+public class TestUtil {
+
+  @Autowired
+  Users users;
+
+  @Autowired
+  WorkLogs wLogs;
+
+  public User insertUser() {
+    User u = new User();
+    u.setUserLogin("foo" + System.currentTimeMillis());
+    u.setUserName("Mr. Foo Bar");
+    u.setUserHash(DigestUtils.md5Hex("e1e2e3e4"));
+    users.save(u);
+    return u;
+  }
+
+  public WorkLog insertWorkLog() {
+
+    User u = insertUser();
+    VwUser v = users.find(u.getUserId());
+
+    LogStatus s = new LogStatus();
+    s.setLogStatusId(1l);
+
+    WorkLog w = new WorkLog();
+    w.setStatus(s);
+    w.setUser(v);
+    w.setWorkLogStart(new Timestamp(System.currentTimeMillis() - 3600000));
+    w.setWorkLogFinish(new Timestamp(System.currentTimeMillis() + 3600000));
+
+    wLogs.save(w);
+
+    return w;
+  }
+}

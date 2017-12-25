@@ -27,5 +27,14 @@ public class WorkLogs {
     .setParameter("id",userId) 
     .getResultList();
   }
+
+  public void save(WorkLog w) {
+    em.persist(w);
+  }
+
+  public int del(Long workLogId) {
+    return em.createQuery("delete from WorkLog w where w.workLogId = :id")
+      .setParameter("id",workLogId).executeUpdate();
+  }
   
 }

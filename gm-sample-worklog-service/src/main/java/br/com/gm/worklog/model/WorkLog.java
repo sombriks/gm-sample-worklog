@@ -18,7 +18,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="vwuser")
+@Table(name="worklog")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
 public class WorkLog {
