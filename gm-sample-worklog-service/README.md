@@ -21,8 +21,12 @@ correctly due a limitation about having top-level configuration files. Also just
 So, the eclipse plugin was added to build.gradle in order to generate .classpath and .project files. Then the plugin
 started to work properly.
 
-For unknown reason the vascode-java plugin was unable to find javax.persistence packages. However the application just 
-ran fine. 
+~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~
+See [this bug](https://github.com/redhat-developer/vscode-java/issues/397) for further information.
+
+However the application just ran fine. 
+
+In [Lombok setup](https://github.com/redhat-developer/vscode-java/wiki/Lombok-support) (to get autocomplete on @Data augmented classes) i had to hardcode the path to lombok jar inside .vscode/settings.json 
 
 ## Tech stack
 
@@ -42,12 +46,11 @@ ran fine.
 
 ## How to test this application
 
-Follow all needed steps to exceute the application but type **"gradle test"** in the end.
+Follow all needed steps to execute the application but type **"gradle test"** in the end.
 
 ## How to evolve this application
 
 H2 database is quite neat to fast prototyping however it does not scales well on file mode. We might use it on server 
 mode, or even replace it with Postgresql or Oracle.
 
-Profile configurations were not set. A production-dedicated profile can se set. Something called 
-application-prod.properties can be set and we choose the profile using a command-line argument.
+[Profile configurations](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) were not set. A production-dedicated profile could optimize, for example, logging, but there's room for improvements.
