@@ -10,7 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import br.com.gm.worklog.TestUtil;
 import br.com.gm.worklog.business.Users;
 
 import br.com.gm.worklog.model.VwUser;
@@ -54,4 +54,11 @@ public class UsersSuite {
     VwUser vu = users.find(u.getUserId());
     assertNull(vu);
   }
+
+  @Test(expected = Exception.class)
+  public void shouldNotBeAbleToSaveTwoUsersWithSameLogin() throws Exception {
+    User u1 = util.insertUser("joe");
+    User u2 = util.insertUser("joe");    
+  }
+
 }

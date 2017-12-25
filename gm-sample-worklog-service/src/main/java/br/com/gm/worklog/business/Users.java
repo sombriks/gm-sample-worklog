@@ -14,7 +14,6 @@ import br.com.gm.worklog.model.VwUser;
 import java.util.List;
 
 @Repository
-@Transactional
 public class Users {
 
   @PersistenceContext
@@ -32,6 +31,7 @@ public class Users {
     return em.find(VwUser.class, userId);
   }
 
+  @Transactional
   public void save(User u) {
     em.persist(u);
   }
@@ -41,6 +41,7 @@ public class Users {
   //   em.remove(u);
   // }
 
+  @Transactional
   public int del(Long userId) {
     return em.createQuery("delete from User u where u.userId = :id")
       .setParameter("id",userId).executeUpdate();

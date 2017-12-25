@@ -22,18 +22,25 @@ public class TestUtil {
   @Autowired
   WorkLogs wLogs;
 
-  public User insertUser() {
+  public User insertUser(String login) {
+    if (login == null)
+      login = "foo" + System.currentTimeMillis();
     User u = new User();
-    u.setUserLogin("foo" + System.currentTimeMillis());
+    u.setUserLogin(login);
     u.setUserName("Mr. Foo Bar");
     u.setUserHash(DigestUtils.md5Hex("e1e2e3e4"));
     users.save(u);
     return u;
   }
 
-  public WorkLog insertWorkLog() {
+  public User insertUser() {
+    return insertUser(null);
+  }
 
-    User u = insertUser();
+  public WorkLog insertWorkLog(User u, int jump) {
+
+    if (u == null)
+      u = insertUser();
     VwUser v = users.find(u.getUserId());
 
     LogStatus s = new LogStatus();
@@ -42,11 +49,21 @@ public class TestUtil {
     WorkLog w = new WorkLog();
     w.setStatus(s);
     w.setUser(v);
-    w.setWorkLogStart(new Timestamp(System.currentTimeMillis() - 3600000));
-    w.setWorkLogFinish(new Timestamp(System.currentTimeMillis() + 3600000));
+    // avoid worklog interval overlap
+    w.setWorkLogStart(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() - 3599000));
+    w.setWorkLogFinish(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() + 3600000));
 
     wLogs.save(w);
 
     return w;
   }
+
+  public WorkLog insertWorkLog() {
+    return insertWorkLog(null, 0);
+  }
+
+  public WorkLog insertWorkLog(User u) {
+    return insertWorkLog(u, 0);
+  }
+
 }
