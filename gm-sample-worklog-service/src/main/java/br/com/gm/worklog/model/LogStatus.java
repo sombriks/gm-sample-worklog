@@ -15,16 +15,16 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name="eventtype") 
+@Table(name="logstatus") 
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EventType {
+public class LogStatus {
   
   @Id
-  @Column(name="eventtypeid")
-  private Long eventTypeId;
+  @Column(name="logstatusid")
+  private Long logStatusId;
 
-  @Column(name="eventtypedescription")
-  private String eventTpeDescription;
+  @Column(name="logstatusdescription")
+  private String logStatusDescription;
 
 }

@@ -12,6 +12,9 @@ Visual Studio [Code](https://code.visualstudio.com/) (1.19.x) was the editor.
 
 ## Caveats
 
+Springboot gradle plugin only works on gradle 4.x series. If there is any need for older gradle versions, gradle 
+wrapper shall be used.
+
 The code plugin [vscode-java](https://github.com/redhat-developer/vscode-java) did not solved import and autocomplete 
 correctly due a limitation about having top-level configuration files. Also just the build.gradle wasn't enough.
 
