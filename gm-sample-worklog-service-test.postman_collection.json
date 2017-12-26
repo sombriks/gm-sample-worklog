@@ -1,0 +1,201 @@
+{
+	"info": {
+		"name": "gm-sample-worklog-service-test",
+		"_postman_id": "4bf2c046-002c-5138-cb05-fd54f234afdc",
+		"description": "integration tests scenarios for the solution's REST api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "00 - should register the test user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userLogin\":\"{{userLogin}}\", \"userHash\":\"{{userHash}}\", \"userName\":\"{{userName}}\"}"
+				},
+				"url": {
+					"raw": "{{serverurl}}/auth/register",
+					"host": [
+						"{{serverurl}}"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				},
+				"description": "it creates a user for futher user"
+			},
+			"response": []
+		},
+		{
+			"name": "01 - should return the jwt to our test user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "35926f59-c775-4603-880f-5f75ba6401f5",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"const parts = pm.response.text().split(\".\")",
+							"",
+							"pm.test(\"payload should have 3 parts\", _ => {",
+							"    pm.expect(parts.length).to.equal(3)",
+							"})",
+							"",
+							"",
+							"pm.test(\"body.sub part should have the right userLogin\", _ => {",
+							"    let body = CryptoJS.enc.Base64.parse(parts[1])",
+							"    body = body.toString(CryptoJS.enc.Utf8)",
+							"    body = JSON.parse(body)",
+							"    pm.expect(body.sub).to.equal(\"joe\")",
+							"})"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"userLogin\":\"{{userLogin}}\", \"userHash\":\"{{userHash}}\"}"
+				},
+				"url": {
+					"raw": "{{serverurl}}/auth/login",
+					"host": [
+						"{{serverurl}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "foo bar\t"
+			},
+			"response": []
+		},
+		{
+			"name": "04 - should register worklog for the test user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{userJWT}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{serverurl}}/worklog",
+					"host": [
+						"{{serverurl}}"
+					],
+					"path": [
+						"worklog"
+					]
+				},
+				"description": "create one worklog. overlaps rules might make it fail"
+			},
+			"response": []
+		},
+		{
+			"name": "99 - should delete the test user (see created id and change url)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{userJWT}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{serverurl}}/user/6",
+					"host": [
+						"{{serverurl}}"
+					],
+					"path": [
+						"user",
+						"6"
+					]
+				},
+				"description": "in order to delete the Authorization header must be set properly "
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a6b2f51f-8707-4dd6-930a-e842c297966c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "95def34d-9e2f-4478-ae6f-bf1b68343478",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "69e019ee-0c4e-40b7-8b9f-6aa107370b8e",
+			"key": "serverurl",
+			"value": "http://localhost:8080",
+			"type": "text"
+		},
+		{
+			"id": "ccbf7303-0298-4503-9dd7-999a37b11e25",
+			"key": "userLogin",
+			"value": "joe",
+			"type": "text"
+		},
+		{
+			"id": "c0be03fa-9b47-4400-9cfb-78575251c3ec",
+			"key": "userHash",
+			"value": "f447b20a7fcbf53a5d5be013ea0b15af",
+			"type": "text"
+		},
+		{
+			"id": "31391cb3-2024-45a9-a073-a3a2e65ad74e",
+			"key": "userName",
+			"value": "Mr. Joe Fromtests",
+			"type": "text"
+		},
+		{
+			"id": "f58c2ec2-55b8-44d0-8538-2a3ef2dbf7d0",
+			"key": "userJWT",
+			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2UifQ.tkp835A71Tdu9bz0hEPNDPoS6NKdkU0X-Ya7xDLifg0",
+			"type": "text"
+		}
+	]
+}
