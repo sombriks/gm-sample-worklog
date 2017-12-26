@@ -32,10 +32,6 @@ public class EventLog {
   private Date eventLogCreation = new Date();
 
   @ManyToOne
-  @JoinColumn(name="userid")
-  private VwUser user;
-
-  @ManyToOne
   @JoinColumn(name="eventtypeid")
   private EventType type;
 

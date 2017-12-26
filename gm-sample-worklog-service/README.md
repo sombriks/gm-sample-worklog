@@ -16,6 +16,7 @@ This service holds the API and the business logic of the project.
 - [JUnit](http://junit.org/junit4/)
 - [JaCoCo](http://www.jacoco.org/jacoco/)
 - [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
+- [Postman](https://www.getpostman.com/)
 
 ## Caveats
 
@@ -52,3 +53,8 @@ H2 database is quite neat to fast prototyping however it does not scales well on
 mode, or even replace it with Postgresql or Oracle.
 
 [Profile configurations](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) were not set. A production-dedicated profile could optimize, for example, logging, but there's room for improvements.
+
+Setup a continuous integration solution can help on test and deploy. workflow.
+
+And speaking in workflow, [git-flow](http://danielkummer.github.io/git-flow-cheatsheet/) is our call for any team bigger than one.
+ 

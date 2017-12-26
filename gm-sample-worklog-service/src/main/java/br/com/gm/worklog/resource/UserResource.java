@@ -2,6 +2,7 @@ package br.com.gm.worklog.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,18 +37,18 @@ public class UserResource {
 
   // post for insert, put for update, however jpa makes it irrelevant
   @RequestMapping(value = "", method = RequestMethod.POST)
-  public VwUser insert(User user) {
+  public VwUser insert(@RequestBody User user) {
     user = users.save(user);
     VwUser author = users.find(user.getUserId());// TODO get from authentication channels
-    events.saveUserCreation(user, author); // POST -> creation, PUT -> modification
+    events.saveUserCreation(user); // POST -> creation, PUT -> modification
     return users.find(user.getUserId());
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT)
-  public VwUser update(User user) {
+  public VwUser update(@RequestBody User user) {
     user = users.save(user);
     VwUser author = users.find(user.getUserId());// TODO get from authentication channels
-    events.saveUserModification(user, author); 
+    events.saveUserModification(user); 
     return users.find(user.getUserId());
   }
 
@@ -55,7 +56,7 @@ public class UserResource {
   public String del(@PathVariable("userId") Long userId) {
     VwUser author = users.find(userId);// TODO get from authentication channels
     users.del(userId);
-    events.seveUserDeletion(userId, author);
+    events.seveUserDeletion(userId);
     return "OK";
   }
 

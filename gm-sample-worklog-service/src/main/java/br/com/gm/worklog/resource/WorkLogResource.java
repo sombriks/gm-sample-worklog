@@ -2,6 +2,7 @@ package br.com.gm.worklog.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,9 +37,9 @@ public class WorkLogResource {
 
 
   @RequestMapping(value = "", method = { RequestMethod.POST })
-  public WorkLog save(WorkLog workLog) {
+  public WorkLog save(@RequestBody WorkLog workLog) {
     workLog = workLogs.save(workLog);
-    events.saveWorkLogCreation(workLog, null);
+    events.saveWorkLogCreation(workLog);
     return workLog;
   }
 }

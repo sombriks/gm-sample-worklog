@@ -63,7 +63,7 @@ public class EventLogsSuite {
     while (i-- > 0)
       list.add(util.insertEventLog(vu));
 
-    assertEquals(list.size(), evLogs.listbyUser(vu.getUserId(), 0, 10).size());
+    assertEquals(list.size(), evLogs.listbyUser(0, 10).size());
 
     list.forEach(e -> evLogs.del(e.getEventLogId()));
   }
@@ -72,7 +72,7 @@ public class EventLogsSuite {
   public void shouldSaveUserCreationEvent() throws Exception {
     User u = util.insertUser();
     VwUser author = users.find(u.getUserId()); // someone to blame when we audit it
-    EventLog ev = evLogs.saveUserCreation(u, author);
+    EventLog ev = evLogs.saveUserCreation(u);
     assertEquals("USER_REGISTER", ev.getType().getEventTpeDescription());
   }
 

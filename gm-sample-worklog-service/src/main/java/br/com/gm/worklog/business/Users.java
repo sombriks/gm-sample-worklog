@@ -3,7 +3,7 @@ package br.com.gm.worklog.business;
 import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 
-import javax.transaction.Transactional; 
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,11 +20,9 @@ public class Users {
   private EntityManager em;
 
   public List<VwUser> listByName(String query, int start, int size) {
-    return em.createQuery("select u from VwUser u where u.userLogin like :query", VwUser.class)
-      .setParameter("query", String.format("%%%s%%", query))
-      .setFirstResult(start)
-      .setMaxResults(size)
-      .getResultList();
+    return em.createQuery("select u from VwUser u where upper(u.userLogin) like upper(:query)", VwUser.class)
+        .setParameter("query", String.format("%%%s%%", query))//
+        .setFirstResult(start).setMaxResults(size).getResultList();
   }
 
   public VwUser find(Long userId) {
@@ -43,8 +41,22 @@ public class Users {
 
   @Transactional
   public int del(Long userId) {
-    return em.createQuery("delete from User u where u.userId = :id")
-      .setParameter("id",userId).executeUpdate();
+    return em.createQuery("delete from User u where u.userId = :id").setParameter("id", userId).executeUpdate();
+  }
+
+  public User findByLoginAndHash(String userLogin, String userHash) {
+    String q = "select u from User u where u.userLogin = :login and u.userHash = :hash";
+    return em.createQuery(q, User.class)//
+        .setParameter("login", userLogin)//
+        .setParameter("hash", userHash)//
+        .getSingleResult();
+  }
+
+  public User findbyLogin(String userLogin) {
+    String q = "select u from User u where u.userLogin = :login";
+    return em.createQuery(q, User.class)//
+        .setParameter("login", userLogin)//
+        .getSingleResult();
   }
 
 }

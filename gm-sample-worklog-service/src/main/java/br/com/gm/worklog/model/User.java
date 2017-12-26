@@ -34,8 +34,4 @@ public class User {
 
   @Column(name="userlogin")
   private String userLogin;
-
-  // the database could create it, but JPA have some limitations
-  // @Column(name="usercreation")
-  // private Date userCreation = Calendar.getInstance().setTimeInMillis(System.currentTimeMillis());
 }

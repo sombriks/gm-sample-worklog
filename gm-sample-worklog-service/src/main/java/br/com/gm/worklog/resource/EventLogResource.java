@@ -17,10 +17,9 @@ public class EventLogResource {
   @Autowired
   private EventLogs events;
 
-  @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-  public List<EventLog> listEvents(@PathVariable("userId") Long userId,
-      @RequestParam(name = "start", defaultValue = "0") int start,
+  @RequestMapping(value = "", method = RequestMethod.GET)
+  public List<EventLog> listEvents(@RequestParam(name = "start", defaultValue = "0") int start,
       @RequestParam(name = "size", defaultValue = "10") int size) {
-    return events.listbyUser(userId, start, size);
+    return events.listbyUser(start, size);
   }
 }

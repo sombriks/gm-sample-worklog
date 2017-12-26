@@ -26,9 +26,9 @@ public class EventLogs {
   @Autowired
   private Users users;
 
-  public List<EventLog> listbyUser(Long userId, int start, int size) {
-    return em.createQuery("select e from EventLog e where e.user.userId = :id", EventLog.class)//
-        .setFirstResult(start).setMaxResults(size).setParameter("id", userId).getResultList();
+  public List<EventLog> listbyUser(int start, int size) {
+    return em.createQuery("select e from EventLog e", EventLog.class)//
+        .setFirstResult(start).setMaxResults(size).getResultList();
   }
 
   public EventLog find(Long eventLogId) {
@@ -47,9 +47,9 @@ public class EventLogs {
   }
 
   @Transactional
-  public EventLog saveUserCreation(User newUser, VwUser author) {
+  public EventLog saveUserCreation(User newUser) {
     EventLog ev = new EventLog();
-    ev.setUser(author);
+    ev.setEventLogDescription(newUser.toString());
     ev.setType(new EventType(EventTypes.USER_REGISTER));
 
     VwUser vu = users.find(newUser.getUserId());
@@ -59,9 +59,8 @@ public class EventLogs {
   }
 
   @Transactional
-  public EventLog saveUserModification(User newUser, VwUser author) {
+  public EventLog saveUserModification(User newUser) {
     EventLog ev = new EventLog();
-    ev.setUser(author);
     ev.setType(new EventType(EventTypes.USER_UPDATE));
 
     VwUser vu = users.find(newUser.getUserId());
@@ -71,10 +70,9 @@ public class EventLogs {
   }
 
   @Transactional
-  public EventLog seveUserDeletion(Long userId, VwUser author) {
+  public EventLog seveUserDeletion(Long userId) {
     EventLog ev = new EventLog();
-    ev.setUser(author);
-    ev.setType(new EventType(EventTypes.USER_UPDATE));
+    ev.setType(new EventType(EventTypes.USER_REMOVE));
 
     ev.setEventLogDescription(userId.toString());
     
@@ -82,9 +80,8 @@ public class EventLogs {
   }
 
   @Transactional
-  public EventLog saveWorkLogCreation(WorkLog workLog, VwUser author) {
+  public EventLog saveWorkLogCreation(WorkLog workLog) {
     EventLog ev = new EventLog();
-    ev.setUser(author);
     ev.setType(new EventType(EventTypes.WORKLOG_CREATE));
     // TODO the author as soon as auth enters in this theater
     return save(ev);

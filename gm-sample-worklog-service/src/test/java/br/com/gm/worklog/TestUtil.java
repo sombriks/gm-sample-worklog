@@ -80,17 +80,14 @@ public class TestUtil {
 
   public EventLog insertEventLog(VwUser vu) {
 
+    if (vu == null)
+      vu = users.find(insertUser().getUserId());
+
     EventLog ev = new EventLog();
 
     EventType et = new EventType();
     et.setEventTypeId(1l);
     ev.setType(et);
-
-    if (vu == null) {
-      User u = insertUser();
-      vu = users.find(u.getUserId());
-    }
-    ev.setUser(vu);
 
     ev.setEventLogDescription(vu.toString());
 
