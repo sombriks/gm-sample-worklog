@@ -13,7 +13,7 @@ import br.com.gm.worklog.model.LogStatus;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
 import br.com.gm.worklog.model.WorkLog;
-import java.sql.Timestamp;
+import java.util.Date;
 
 @Component
 public class TestUtil {
@@ -55,8 +55,15 @@ public class TestUtil {
     w.setStatus(s);
     w.setUser(v);
     // avoid worklog interval overlap
-    w.setWorkLogStart(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() - 3599000));
-    w.setWorkLogFinish(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() + 3600000));
+
+    Date t1 = new Date();
+    t1.setTime((2 * jump * 3600000) + System.currentTimeMillis() - 3599000);
+
+    Date t2 = new Date();
+    t2.setTime((2 * jump * 3600000) + System.currentTimeMillis() + 3600000);
+
+    w.setWorkLogStart(t1);
+    w.setWorkLogFinish(t2);
 
     w = wLogs.save(w);
 

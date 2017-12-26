@@ -14,7 +14,7 @@ import br.com.gm.worklog.model.EventType;
 import br.com.gm.worklog.model.EventTypes;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
-
+import br.com.gm.worklog.model.WorkLog;
 import java.util.List;
 
 @Repository
@@ -49,29 +49,44 @@ public class EventLogs {
   @Transactional
   public EventLog saveUserCreation(User newUser, VwUser author) {
     EventLog ev = new EventLog();
+    ev.setUser(author);
+    ev.setType(new EventType(EventTypes.USER_REGISTER));
+
     VwUser vu = users.find(newUser.getUserId());
     ev.setEventLogDescription(vu.toString());
-    ev.setType(new EventType(EventTypes.USER_REGISTER));
-    ev.setUser(author);
+
     return save(ev);
   }
 
   @Transactional
   public EventLog saveUserModification(User newUser, VwUser author) {
     EventLog ev = new EventLog();
+    ev.setUser(author);
+    ev.setType(new EventType(EventTypes.USER_UPDATE));
+
     VwUser vu = users.find(newUser.getUserId());
     ev.setEventLogDescription(vu.toString());
-    ev.setType(new EventType(EventTypes.USER_UPDATE));
-    ev.setUser(author);
+
     return save(ev);
   }
 
   @Transactional
   public EventLog seveUserDeletion(Long userId, VwUser author) {
     EventLog ev = new EventLog();
-    ev.setEventLogDescription(userId.toString());
-    ev.setType(new EventType(EventTypes.USER_UPDATE));
     ev.setUser(author);
+    ev.setType(new EventType(EventTypes.USER_UPDATE));
+
+    ev.setEventLogDescription(userId.toString());
+    
+    return save(ev);
+  }
+
+  @Transactional
+  public EventLog saveWorkLogCreation(WorkLog workLog, VwUser author) {
+    EventLog ev = new EventLog();
+    ev.setUser(author);
+    ev.setType(new EventType(EventTypes.WORKLOG_CREATE));
+    // TODO the author as soon as auth enters in this theater
     return save(ev);
   }
 

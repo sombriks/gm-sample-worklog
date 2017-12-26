@@ -5,11 +5,13 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -31,5 +33,6 @@ public class VwUser {
   private String userLogin;
 
   @Column(name="usercreation")
-  private Timestamp userCreation;
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date userCreation;
 }

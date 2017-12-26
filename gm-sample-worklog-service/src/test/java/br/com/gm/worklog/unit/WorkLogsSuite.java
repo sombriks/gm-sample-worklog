@@ -1,6 +1,6 @@
 package br.com.gm.worklog.unit;
 
-import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,8 +90,14 @@ public class WorkLogsSuite {
 
     WorkLog w = util.insertWorkLog();
 
-    w.setWorkLogStart(new Timestamp(System.currentTimeMillis()+1000));
-    w.setWorkLogFinish(new Timestamp(System.currentTimeMillis()-1000));
+    Date t1 = new Date();
+    t1.setTime(System.currentTimeMillis()+1000);
+
+    Date t2 = new Date();
+    t2.setTime(System.currentTimeMillis()-1000);
+
+    w.setWorkLogStart(t1);
+    w.setWorkLogFinish(t2);
     
     wLogs.save(w);
 

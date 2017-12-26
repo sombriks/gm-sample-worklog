@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -26,5 +26,9 @@ public class LogStatus {
 
   @Column(name="logstatusdescription")
   private String logStatusDescription;
+
+  public LogStatus(){}
+
+  public LogStatus(LogStatuses statuses) { this.logStatusId = statuses.getId(); }
 
 }

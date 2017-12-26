@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -29,13 +29,13 @@ public class WorkLog {
   private Long workLogId; 
 
   @Column(name="worklogstart")
-  private Timestamp workLogStart;
+  private Date workLogStart;
 
   @Column(name="worklogfinish")
-  private Timestamp workLogFinish;
+  private Date workLogFinish;
 
   @Column(name="worklogcreation")
-  private Timestamp workLogCreation = new Timestamp(System.currentTimeMillis());
+  private Date workLogCreation = new Date(); // Calendar(System.currentTimeMillis());
 
   @ManyToOne
   @JoinColumn(name="logstatusid")

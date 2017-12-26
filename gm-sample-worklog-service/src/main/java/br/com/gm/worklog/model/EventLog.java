@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -29,7 +29,7 @@ public class EventLog {
   private Long eventLogId;
 
   @Column(name="eventlogcreation")
-  private Timestamp eventLogCreation = new Timestamp(System.currentTimeMillis());
+  private Date eventLogCreation = new Date();
 
   @ManyToOne
   @JoinColumn(name="userid")

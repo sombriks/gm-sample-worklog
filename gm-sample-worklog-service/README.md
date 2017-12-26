@@ -2,38 +2,34 @@
 
 This service holds the API and the business logic of the project. 
 
-## Programming Environment
-
-The code was developed and tested on Linux [Fedora](https://getfedora.org/pt_BR/workstation/) 27 64 bits.
-It uses openjdk 8 from fedora repos.
-Visual Studio [Code](https://code.visualstudio.com/) (1.19.x) was the editor. 
-[SDKMan!](http://sdkman.io/) was used to solve a few tooling needs.
-[Gradle](https://gradle.org/) was chosen as build and dependency management tool instead maven.
-
-## Caveats
-
-Springboot gradle plugin only works on gradle 4.x series. If there is any need for older gradle versions, gradle 
-wrapper shall be used.
-
-The code plugin [vscode-java](https://github.com/redhat-developer/vscode-java) did not solved import and autocomplete 
-correctly due a limitation about having top-level configuration files. Also just the build.gradle wasn't enough.
-
-So, the eclipse plugin was added to build.gradle in order to generate .classpath and .project files. Then the plugin
-started to work properly.
-
-~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~
-See [this bug](https://github.com/redhat-developer/vscode-java/issues/397) for further information.
-
-However the application just ran fine. 
-
-In [Lombok setup](https://github.com/redhat-developer/vscode-java/wiki/Lombok-support) (to get autocomplete on @Data augmented classes) i had to hardcode the path to lombok jar inside .vscode/settings.json 
-
 ## Tech stack
 
+- [Linux Fedora](https://getfedora.org/pt_BR/workstation/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+- [SDKMan!](http://sdkman.io/)
+- [Gradle](https://gradle.org/)
+- [Lombok](https://projectlombok.org/)
 - [Spring Boot](https://projects.spring.io/spring-boot/)
 - [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
 - [H2 Database Engine](http://www.h2database.com/html/download.html)
 - [FlyWay Schema Migrations](https://flywaydb.org/)
+- [JUnit](http://junit.org/junit4/)
+- [JaCoCo](http://www.jacoco.org/jacoco/)
+- [Apache Commons Codec](https://commons.apache.org/proper/commons-codec/)
+
+## Caveats
+
+- Spring Boot gradle plugin only works on gradle 4.x series.
+- The code plugin [vscode-java](https://github.com/redhat-developer/vscode-java) did not solved import and 
+autocomplete correctly due a limitation about having top-level configuration files instead to use all occurrences of 
+these files. It was solved by using service folder as temporary project root.
+- Also, the eclipse plugin was added to build.gradle in order to generate *.classpath* and *.project* files. Then the 
+plugin started to work almost properly.
+- ~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~
+See [this bug](https://github.com/redhat-developer/vscode-java/issues/397) for further information.
+- In [Lombok setup](https://github.com/redhat-developer/vscode-java/wiki/Lombok-support) (to get autocomplete on @Data 
+augmented classes for example) i had to hardcode the path to lombok jar inside **.vscode/settings.json**. You might 
+need to edit this file in order to not explode your machine. 
 
 ## How to execute this application
 
@@ -47,6 +43,8 @@ In [Lombok setup](https://github.com/redhat-developer/vscode-java/wiki/Lombok-su
 ## How to test this application
 
 Follow all needed steps to execute the application but type **"gradle test"** in the end.
+
+Also, you can generate a coverage report by typing **"grade jacocoTestReport"**.
 
 ## How to evolve this application
 

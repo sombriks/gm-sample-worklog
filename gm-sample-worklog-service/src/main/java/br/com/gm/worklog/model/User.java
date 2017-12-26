@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -36,6 +36,6 @@ public class User {
   private String userLogin;
 
   // the database could create it, but JPA have some limitations
-  @Column(name="usercreation")
-  private Timestamp userCreation = new Timestamp(System.currentTimeMillis());
+  // @Column(name="usercreation")
+  // private Date userCreation = Calendar.getInstance().setTimeInMillis(System.currentTimeMillis());
 }

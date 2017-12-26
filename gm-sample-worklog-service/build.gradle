@@ -53,10 +53,10 @@ dependencies {
 	compileOnly "org.projectlombok:lombok:1.16.18"
 	// https://mvnrepository.com/artifact/junit/junit
 	testCompile "junit:junit:4.12"
+	// https://mvnrepository.com/artifact/commons-codec/commons-codec
+	testCompile group: 'commons-codec', name: 'commons-codec', version: '1.11'
 	// tried to add explicit dependency, no effect https://github.com/redhat-developer/vscode-java/issues/397
 	// https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
 	// compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
-	// https://mvnrepository.com/artifact/commons-codec/commons-codec
-	testCompile group: 'commons-codec', name: 'commons-codec', version: '1.11'
 
 }
