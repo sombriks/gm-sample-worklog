@@ -39,9 +39,9 @@ public class WorkLogs {
 
   @SneakyThrows
   @Transactional
-  public void save(WorkLog w) {
+  public WorkLog save(WorkLog w) {
     if (overlaps(w).size() == 0) {
-      em.persist(w);
+      return em.merge(w);
     } else
       throw new Exception("[" + w + "] overlaps another WorkLog");
   }

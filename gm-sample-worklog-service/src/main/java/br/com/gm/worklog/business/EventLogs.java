@@ -14,18 +14,25 @@ import br.com.gm.worklog.model.EventLog;
 import java.util.List;
 
 @Repository
-@Transactional
 public class EventLogs {
-  
+
   @PersistenceContext
   private EntityManager em;
 
   public List<EventLog> listbyUser(Long userId, int start, int size) {
-    return em.createQuery("select e from EventLog e where e.user.userId = :id", EventLog.class)
-    .setFirstResult(start)
-    .setMaxResults(size)
-    .setParameter("id",userId) 
-    .getResultList();
+    return em.createQuery("select e from EventLog e where e.user.userId = :id", EventLog.class)//
+        .setFirstResult(start).setMaxResults(size).setParameter("id", userId).getResultList();
   }
-  
+
+  @Transactional
+  public EventLog save(EventLog ev) {
+    return em.merge(ev);
+  }
+
+  @Transactional
+  public int del(Long eventLogId) {
+    return em.createQuery("delete from EventLog ev where ev.eventLogId = :id")//
+        .setParameter("id", eventLogId).executeUpdate();
+  }
+
 }

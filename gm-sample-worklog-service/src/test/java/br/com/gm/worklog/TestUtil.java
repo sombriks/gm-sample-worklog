@@ -4,9 +4,11 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
+import br.com.gm.worklog.business.EventLogs;
 import br.com.gm.worklog.business.Users;
 import br.com.gm.worklog.business.WorkLogs;
+import br.com.gm.worklog.model.EventLog;
+import br.com.gm.worklog.model.EventType;
 import br.com.gm.worklog.model.LogStatus;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
@@ -17,10 +19,13 @@ import java.sql.Timestamp;
 public class TestUtil {
 
   @Autowired
-  Users users;
+  private Users users;
 
   @Autowired
-  WorkLogs wLogs;
+  private WorkLogs wLogs;
+
+  @Autowired
+  private EventLogs evLogs;
 
   public User insertUser(String login) {
     if (login == null)
@@ -29,7 +34,7 @@ public class TestUtil {
     u.setUserLogin(login);
     u.setUserName("Mr. Foo Bar");
     u.setUserHash(DigestUtils.md5Hex("e1e2e3e4"));
-    users.save(u);
+    u = users.save(u);
     return u;
   }
 
@@ -53,7 +58,7 @@ public class TestUtil {
     w.setWorkLogStart(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() - 3599000));
     w.setWorkLogFinish(new Timestamp((2 * jump * 3600000) + System.currentTimeMillis() + 3600000));
 
-    wLogs.save(w);
+    w = wLogs.save(w);
 
     return w;
   }
@@ -64,6 +69,25 @@ public class TestUtil {
 
   public WorkLog insertWorkLog(User u) {
     return insertWorkLog(u, 0);
+  }
+
+  public EventLog insertEventLog() {
+
+    EventLog ev = new EventLog();
+
+    EventType et = new EventType();
+    et.setEventTypeId(1l);
+    ev.setType(et);
+
+    User u = insertUser();
+    VwUser vu = users.find(u.getUserId());
+    ev.setUser(vu);
+
+    ev.setEventLogDescription(vu.toString());
+
+    ev = evLogs.save(ev);
+
+    return ev;
   }
 
 }

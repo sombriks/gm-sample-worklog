@@ -38,4 +38,7 @@ public class EventLog {
   @ManyToOne
   @JoinColumn(name="eventtypeid")
   private EventType type;
+
+  @Column(name="eventlogdescription")
+  private String eventLogDescription;
 }

@@ -1,4 +1,4 @@
-package br.com.gm.worklog;
+package br.com.gm.worklog.unit;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;

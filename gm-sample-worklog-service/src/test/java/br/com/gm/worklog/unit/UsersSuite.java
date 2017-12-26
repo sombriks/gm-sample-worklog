@@ -1,4 +1,4 @@
-package br.com.gm.worklog;
+package br.com.gm.worklog.unit;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import br.com.gm.worklog.TestUtil;
 import br.com.gm.worklog.business.Users;
+import br.com.gm.worklog.business.EventLogs;
 
 import br.com.gm.worklog.model.VwUser;
 import br.com.gm.worklog.model.User;

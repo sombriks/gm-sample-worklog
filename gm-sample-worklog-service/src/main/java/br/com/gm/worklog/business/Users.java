@@ -32,8 +32,8 @@ public class Users {
   }
 
   @Transactional
-  public void save(User u) {
-    em.persist(u);
+  public User save(User u) {
+    return em.merge(u);
   }
 
   // pretty useless on a RESTFul party
