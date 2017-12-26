@@ -71,7 +71,7 @@ public class TestUtil {
     return insertWorkLog(u, 0);
   }
 
-  public EventLog insertEventLog() {
+  public EventLog insertEventLog(VwUser vu) {
 
     EventLog ev = new EventLog();
 
@@ -79,8 +79,10 @@ public class TestUtil {
     et.setEventTypeId(1l);
     ev.setType(et);
 
-    User u = insertUser();
-    VwUser vu = users.find(u.getUserId());
+    if (vu == null) {
+      User u = insertUser();
+      vu = users.find(u.getUserId());
+    }
     ev.setUser(vu);
 
     ev.setEventLogDescription(vu.toString());
@@ -88,6 +90,10 @@ public class TestUtil {
     ev = evLogs.save(ev);
 
     return ev;
+  }
+
+  public EventLog insertEventLog() {
+    return insertEventLog(null);
   }
 
 }

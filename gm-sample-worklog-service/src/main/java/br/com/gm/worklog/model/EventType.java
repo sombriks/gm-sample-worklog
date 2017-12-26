@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
-
 import java.sql.Timestamp;
 
 import lombok.Data;
@@ -26,5 +25,9 @@ public class EventType {
 
   @Column(name="eventtypedescription")
   private String eventTpeDescription;
+
+  public EventType(){}
+
+  public EventType(EventTypes type) { this.eventTypeId = type.getId(); }
 
 }

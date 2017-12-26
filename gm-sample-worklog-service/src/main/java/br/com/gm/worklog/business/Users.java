@@ -36,7 +36,7 @@ public class Users {
     return em.merge(u);
   }
 
-  // pretty useless on a RESTFul party
+  // remove and persist are pretty useless on a RESTFul party
   // public void del(User u) {
   //   em.remove(u);
   // }
