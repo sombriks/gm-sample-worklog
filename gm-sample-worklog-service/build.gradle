@@ -26,6 +26,10 @@ apply plugin: 'java'
 // .classpath and .project are needed by vscode-java
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+// https://docs.gradle.org/current/userguide/jacoco_plugin.html
+// now we can do "gradle jacocoTestReport" and see build/reports folder
+apply plugin: "jacoco"
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8

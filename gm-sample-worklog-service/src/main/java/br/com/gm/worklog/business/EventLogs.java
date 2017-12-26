@@ -57,10 +57,22 @@ public class EventLogs {
   }
 
   @Transactional
+  public EventLog saveUserModification(User newUser, VwUser author) {
+    EventLog ev = new EventLog();
+    VwUser vu = users.find(newUser.getUserId());
+    ev.setEventLogDescription(vu.toString());
+    ev.setType(new EventType(EventTypes.USER_UPDATE));
+    ev.setUser(author);
+    return save(ev);
+  }
+
+  @Transactional
   public EventLog seveUserDeletion(Long userId, VwUser author) {
     EventLog ev = new EventLog();
-
-    return ev;
+    ev.setEventLogDescription(userId.toString());
+    ev.setType(new EventType(EventTypes.USER_UPDATE));
+    ev.setUser(author);
+    return save(ev);
   }
 
 }

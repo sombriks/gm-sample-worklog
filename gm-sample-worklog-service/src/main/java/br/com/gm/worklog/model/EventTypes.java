@@ -10,6 +10,7 @@ public enum EventTypes {
   USER_LOGIN(2),
   USER_UPDATE(3),
   USER_REMOVE(4),
+  
   WORKLOG_CREATE(5),
   WORKLOG_CLOSE(6),
   WORKLOG_MODIFY(7),

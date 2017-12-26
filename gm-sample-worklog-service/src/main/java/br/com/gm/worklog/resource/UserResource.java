@@ -35,19 +35,27 @@ public class UserResource {
   }
 
   // post for insert, put for update, however jpa makes it irrelevant
-  @RequestMapping(value = "", method = { RequestMethod.POST, RequestMethod.PUT })
-  public VwUser save(User user) {
+  @RequestMapping(value = "", method = RequestMethod.POST)
+  public VwUser insert(User user) {
     user = users.save(user);
     VwUser author = users.find(user.getUserId());// TODO get from authentication channels
-    events.saveUserCreation(user,author);
+    events.saveUserCreation(user, author); // POST -> creation, PUT -> modification
     return users.find(user.getUserId());
   }
-  
+
+  @RequestMapping(value = "", method = RequestMethod.PUT)
+  public VwUser update(User user) {
+    user = users.save(user);
+    VwUser author = users.find(user.getUserId());// TODO get from authentication channels
+    events.saveUserModification(user, author); 
+    return users.find(user.getUserId());
+  }
+
   @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
   public String del(@PathVariable("userId") Long userId) {
     VwUser author = users.find(userId);// TODO get from authentication channels
     users.del(userId);
-    events.seveUserDeletion(userId,author);
+    events.seveUserDeletion(userId, author);
     return "OK";
   }
 
