@@ -36,7 +36,7 @@ create table eventlog (
   eventlogid integer primary key auto_increment,
   eventtypeid integer not null,
   eventlogcreation datetime not null default now(),
-  eventlogdescription varchar(255) not null,
+  eventlogdescription text not null,
   
   foreign key (eventtypeid) references eventtype(eventtypeid)
 );

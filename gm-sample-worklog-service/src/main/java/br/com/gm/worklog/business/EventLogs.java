@@ -83,7 +83,7 @@ public class EventLogs {
   public EventLog saveWorkLogCreation(WorkLog workLog) {
     EventLog ev = new EventLog();
     ev.setType(new EventType(EventTypes.WORKLOG_CREATE));
-    // TODO the author as soon as auth enters in this theater
+    ev.setEventLogDescription(workLog.toString());
     return save(ev);
   }
 

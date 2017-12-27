@@ -103,7 +103,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": ""
+					"raw": "{\"workLogStart\":\"2017-12-31T13:37:11.999Z\",\"workLogFinish\":\"2017-12-31T14:37:11.999Z\"}"
 				},
 				"url": {
 					"raw": "{{serverurl}}/worklog",
@@ -168,31 +168,31 @@
 	],
 	"variable": [
 		{
-			"id": "69e019ee-0c4e-40b7-8b9f-6aa107370b8e",
+			"id": "d0e115c7-30b3-4416-8624-3a617b85ff52",
 			"key": "serverurl",
 			"value": "http://localhost:8080",
 			"type": "text"
 		},
 		{
-			"id": "ccbf7303-0298-4503-9dd7-999a37b11e25",
+			"id": "a462f96e-c020-400a-baf9-37b4badc20fc",
 			"key": "userLogin",
 			"value": "joe",
 			"type": "text"
 		},
 		{
-			"id": "c0be03fa-9b47-4400-9cfb-78575251c3ec",
+			"id": "765a1065-de68-4c57-87b6-ef5ac4f7a069",
 			"key": "userHash",
 			"value": "f447b20a7fcbf53a5d5be013ea0b15af",
 			"type": "text"
 		},
 		{
-			"id": "31391cb3-2024-45a9-a073-a3a2e65ad74e",
+			"id": "3462b6be-adc7-4101-9a28-f34f6d602e4e",
 			"key": "userName",
 			"value": "Mr. Joe Fromtests",
 			"type": "text"
 		},
 		{
-			"id": "f58c2ec2-55b8-44d0-8538-2a3ef2dbf7d0",
+			"id": "fb74ebc4-2e6a-482b-be9d-14c7748149cf",
 			"key": "userJWT",
 			"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2UifQ.tkp835A71Tdu9bz0hEPNDPoS6NKdkU0X-Ya7xDLifg0",
 			"type": "text"
