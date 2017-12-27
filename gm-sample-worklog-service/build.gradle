@@ -41,24 +41,24 @@ repositories {
 }
 
 dependencies {
+	// https://projects.spring.io/spring-boot/
     compile "org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE"
-	// https://github.com/jwtk/jjwt
-	compile 'io.jsonwebtoken:jjwt:0.9.0'
 	// https://spring.io/guides/gs/accessing-data-jpa/
     compile "org.springframework.boot:spring-boot-starter-data-jpa:1.5.9.RELEASE"
+	// https://spring.io/guides/gs/caching/
+	compile "org.springframework.boot:spring-boot-starter-cache:1.5.9.RELEASE"
 	// https://mvnrepository.com/artifact/com.h2database/h2
 	compile "com.h2database:h2:1.4.191"
+	// https://github.com/jwtk/jjwt
+	compile 'io.jsonwebtoken:jjwt:0.9.0'
 	// https://mvnrepository.com/artifact/org.flywaydb/flyway-core
 	compile "org.flywaydb:flyway-core:5.0.3"
-    testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
+	// https://spring.io/guides/gs/testing-web/
+	testCompile "org.springframework.boot:spring-boot-starter-test:1.5.9.RELEASE"
 	// https://mvnrepository.com/artifact/junit/junit
 	testCompile "junit:junit:4.12"
 	// https://mvnrepository.com/artifact/commons-codec/commons-codec
 	testCompile "commons-codec:commons-codec:1.11"
 	// https://projectlombok.org/features/Data
 	compileOnly "org.projectlombok:lombok:1.16.18"
-	
-	// tried to add explicit dependency, no effect https://github.com/redhat-developer/vscode-java/issues/397
-	// https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.1-api
-	// compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
 }

@@ -2,6 +2,8 @@ package br.com.gm.worklog.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -28,12 +30,15 @@ public class WorkLog {
   @Column(name="worklogid")
   private Long workLogId; 
 
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(name="worklogstart")
   private Date workLogStart;
 
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(name="worklogfinish")
   private Date workLogFinish;
 
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(name="worklogcreation")
   private Date workLogCreation = new Date(); // Calendar(System.currentTimeMillis());
 

@@ -3,6 +3,8 @@ package br.com.gm.worklog.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
@@ -28,6 +30,7 @@ public class EventLog {
   @Column(name="eventlogid")
   private Long eventLogId;
 
+  @Temporal(TemporalType.TIMESTAMP)
   @Column(name="eventlogcreation")
   private Date eventLogCreation = new Date();
 

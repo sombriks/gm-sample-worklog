@@ -1,5 +1,6 @@
 package br.com.gm.worklog.resource;
 
+import br.com.gm.worklog.business.EventLogs;
 import br.com.gm.worklog.business.Users;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.impl.crypto.MacProvider;
 
 import java.security.Key;
 import javax.crypto.spec.SecretKeySpec;
@@ -28,10 +28,14 @@ public class AuthResource {
   @Autowired
   private Users users;
 
+  @Autowired
+  private EventLogs events;
+  
   @RequestMapping(value = "/register", method = RequestMethod.POST)
   public VwUser register(@RequestBody User u) {
     u = users.save(u);
     VwUser vu = users.find(u.getUserId());
+    events.saveUserCreation(vu);
     return vu;
   }
 
@@ -47,6 +51,8 @@ public class AuthResource {
     String compactJws = Jwts.builder().setSubject(u.getUserLogin())
         .signWith(SignatureAlgorithm.HS256, key).compact();
 
+    VwUser vu = users.find(u.getUserId());
+    events.saveUserLogin(vu);
     // green on https://jwt.io/
     return compactJws;
   }

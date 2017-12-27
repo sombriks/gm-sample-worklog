@@ -1,6 +1,5 @@
 package br.com.gm.worklog.unit;
 
-import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,7 +71,7 @@ public class EventLogsSuite {
   public void shouldSaveUserCreationEvent() throws Exception {
     User u = util.insertUser();
     VwUser author = users.find(u.getUserId()); // someone to blame when we audit it
-    EventLog ev = evLogs.saveUserCreation(u);
+    EventLog ev = evLogs.saveUserCreation(author);
     assertEquals("USER_REGISTER", ev.getType().getEventTpeDescription());
   }
 

@@ -12,15 +12,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 import br.com.gm.worklog.business.WorkLogs;
 import br.com.gm.worklog.TestUtil;
 import br.com.gm.worklog.business.Users;
 
-import br.com.gm.worklog.model.LogStatus;
 import br.com.gm.worklog.model.WorkLog;
-import br.com.gm.worklog.model.VwUser;
 import br.com.gm.worklog.model.User;
 
 import static org.junit.Assert.assertNotNull;
@@ -83,6 +79,8 @@ public class WorkLogsSuite {
     WorkLog w1 = util.insertWorkLog(u);
     WorkLog w2 = util.insertWorkLog(u);
     // System.out.printf("%s\n%s%", w1,w2);
+    w1.setWorkLogStart(new Date());
+    w2.setWorkLogStart(new Date());
   }
 
   @Test(expected = Exception.class)

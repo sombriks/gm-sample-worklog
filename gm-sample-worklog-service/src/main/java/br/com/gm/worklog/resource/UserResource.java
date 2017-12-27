@@ -39,22 +39,21 @@ public class UserResource {
   @RequestMapping(value = "", method = RequestMethod.POST)
   public VwUser insert(@RequestBody User user) {
     user = users.save(user);
-    VwUser author = users.find(user.getUserId());// TODO get from authentication channels
-    events.saveUserCreation(user); // POST -> creation, PUT -> modification
+    VwUser author = users.find(user.getUserId());
+    events.saveUserCreation(author); // POST -> creation, PUT -> modification
     return users.find(user.getUserId());
   }
 
   @RequestMapping(value = "", method = RequestMethod.PUT)
   public VwUser update(@RequestBody User user) {
     user = users.save(user);
-    VwUser author = users.find(user.getUserId());// TODO get from authentication channels
-    events.saveUserModification(user); 
+    VwUser author = users.find(user.getUserId());
+    events.saveUserModification(author); 
     return users.find(user.getUserId());
   }
 
   @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
   public String del(@PathVariable("userId") Long userId) {
-    VwUser author = users.find(userId);// TODO get from authentication channels
     users.del(userId);
     events.seveUserDeletion(userId);
     return "OK";
