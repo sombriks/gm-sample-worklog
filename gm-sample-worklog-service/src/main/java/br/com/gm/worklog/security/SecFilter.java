@@ -44,9 +44,9 @@ public class SecFilter extends OncePerRequestFilter {
 
           String token = header.replace("Bearer ", "");
 
-          String userLogin = new String(Base64.getDecoder().decode(token.split("\\.")[1])); 
+          String userLogin = new String(Base64.getDecoder().decode(token.split("\\.")[1]));
           userLogin = userLogin.replaceAll(".*\"sub\":\"(.+)\".*", "$1");
-          
+
           // System.out.println("**** " + userLogin + " ****");
           // **** {"sub":"joe"} ****
 
@@ -63,6 +63,9 @@ public class SecFilter extends OncePerRequestFilter {
           response.getWriter().write("Malformed Authorization header");
         }
       }
+    } else {
+      // we have no business there, move forward
+      filterChain.doFilter(request, response);
     }
   }
 }

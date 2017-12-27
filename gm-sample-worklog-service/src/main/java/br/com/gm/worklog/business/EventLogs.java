@@ -4,7 +4,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 
 import javax.transaction.Transactional;
-
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import br.com.gm.worklog.model.EventLog;
@@ -20,11 +20,13 @@ public class EventLogs {
   @PersistenceContext
   private EntityManager em;
 
+  @Cacheable("eventlogs")
   public List<EventLog> listbyUser(int start, int size) {
     return em.createQuery("select e from EventLog e", EventLog.class)//
         .setFirstResult(start).setMaxResults(size).getResultList();
   }
 
+  @Cacheable("eventlog")
   public EventLog find(Long eventLogId) {
     return em.find(EventLog.class, eventLogId);
   }

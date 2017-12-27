@@ -5,6 +5,7 @@ import javax.persistence.EntityManager;
 
 import javax.transaction.Transactional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
 import br.com.gm.worklog.model.LogStatus;
@@ -21,11 +22,13 @@ public class WorkLogs {
   @PersistenceContext
   private EntityManager em;
 
+  @Cacheable("worklogs")
   public List<WorkLog> listbyUser(Long userId, int start, int size) {
     return em.createQuery("select w from WorkLog w where w.user.userId = :id", WorkLog.class)//
         .setFirstResult(start).setMaxResults(size).setParameter("id", userId).getResultList();
   }
 
+  @Cacheable("worklog")
   public WorkLog find(Long workLogId) {
     return em.find(WorkLog.class, workLogId);
   }

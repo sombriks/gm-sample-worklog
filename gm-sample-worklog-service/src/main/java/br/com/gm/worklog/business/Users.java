@@ -4,7 +4,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.EntityManager;
 
 import javax.transaction.Transactional;
-
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
@@ -17,12 +17,14 @@ public class Users {
   @PersistenceContext
   private EntityManager em;
 
+  @Cacheable("users")
   public List<VwUser> listByName(String query, int start, int size) {
-    return em.createQuery("select u from VwUser u where upper(u.userLogin) like upper(:query)", VwUser.class)
-        .setParameter("query", String.format("%%%s%%", query))//
+    return em.createQuery("select u from VwUser u where u.userLogin like :query", VwUser.class)
+        .setParameter("query", "%" + query + "%")//
         .setFirstResult(start).setMaxResults(size).getResultList();
   }
 
+  @Cacheable("user")
   public VwUser find(Long userId) {
     return em.find(VwUser.class, userId);
   }
