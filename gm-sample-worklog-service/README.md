@@ -26,8 +26,9 @@ autocomplete correctly due a limitation about having top-level configuration fil
 these files. It was solved by using service folder as temporary project root.
 - Also, the eclipse plugin was added to build.gradle in order to generate *.classpath* and *.project* files. Then the 
 plugin started to work almost properly.
-- ~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~
-See [this bug](https://github.com/redhat-developer/vscode-java/issues/397) for further information.
+- ~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~ 
+~~See [this bug](https://github.com/redhat-developer/vscode-java/issues/397) for further information.~~
+Every time a new dependency is added, we need to run **gradle cleanEclipse ; gradle eclipse** again.
 - In [Lombok setup](https://github.com/redhat-developer/vscode-java/wiki/Lombok-support) (to get autocomplete on @Data 
 augmented classes for example) i had to hardcode the path to lombok jar inside **.vscode/settings.json**. You might 
 need to edit this file in order to not explode your machine. 
