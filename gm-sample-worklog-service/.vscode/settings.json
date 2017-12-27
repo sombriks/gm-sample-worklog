@@ -1,7 +1,5 @@
 {
-  "java.configuration.updateBuildConfiguration": "automatic",
   "files.autoSave": "onFocusChange",
   "editor.wordWrapColumn": 120,
   "editor.tabSize": 2,
-  "java.jdt.ls.vmargs": "-javaagent:/home/sombriks/.lombok-1.16.18.jar -Xbootclasspath/a:/home/sombriks/.lombok-1.16.18.jar -noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication"
 }

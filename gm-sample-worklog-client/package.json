@@ -8,5 +8,22 @@
   },
   "keywords": [],
   "author": "Leonardo Silveira <somblriks@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^14.5.0",
+    "browserify-css": "^0.14.0",
+    "budo": "^10.0.4",
+    "vueify": "^9.4.1"
+  },
+  "dependencies": {
+    "vue": "^2.5.13",
+    "vue-material": "^0.8.1",
+    "vue-router": "^3.0.1"
+  },
+  "browserify": {
+    "transform":[
+      "browserify-css",
+      "vueify"
+    ]
+  }
 }

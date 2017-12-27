@@ -11,6 +11,7 @@ This service holds the API and the business logic of the project.
 - [Lombok](https://projectlombok.org/)
 - [Spring Boot](https://projects.spring.io/spring-boot/)
 - [Spring Data JPA](https://projects.spring.io/spring-data-jpa/)
+- [Spring Cache](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-caching.html#boot-features-caching-provider-caffeine)
 - [H2 Database Engine](http://www.h2database.com/html/download.html)
 - [FlyWay Schema Migrations](https://flywaydb.org/)
 - [JUnit](http://junit.org/junit4/)
