@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -21,6 +22,7 @@ import javax.crypto.spec.SecretKeySpec;
  * For simplicity we are both Authorization Server and Resource server. 
  * https://tools.ietf.org/html/rfc6750#page-4 
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/auth")
 public class AuthResource {

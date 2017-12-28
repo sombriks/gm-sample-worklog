@@ -18,7 +18,7 @@ public class Users {
   private EntityManager em;
 
   @Cacheable("users")
-  public List<VwUser> listByName(String query, int start, int size) {
+  public List<VwUser> listByLogin(String query, int start, int size) {
     return em.createQuery("select u from VwUser u where u.userLogin like :query", VwUser.class)
         .setParameter("query", "%" + query + "%")//
         .setFirstResult(start).setMaxResults(size).getResultList();

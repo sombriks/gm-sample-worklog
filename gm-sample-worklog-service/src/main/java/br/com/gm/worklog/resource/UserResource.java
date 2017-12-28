@@ -7,12 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 import br.com.gm.worklog.business.EventLogs;
 import br.com.gm.worklog.business.Users;
 import br.com.gm.worklog.model.User;
 import br.com.gm.worklog.model.VwUser;
+
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/user")
 public class UserResource {
@@ -24,10 +28,10 @@ public class UserResource {
   private EventLogs events;
 
   @RequestMapping(value = "", method = RequestMethod.GET)
-  public List<VwUser> listByName(@RequestParam("query") String query,
+  public List<VwUser> listByLogin(@RequestParam("query") String query,
       @RequestParam(name = "start", defaultValue = "0") int start,
       @RequestParam(name = "size", defaultValue = "10") int size) {
-    return users.listByName(query, start, size);
+    return users.listByLogin(query, start, size);
   }
 
   @RequestMapping(value = "/{userId}", method = RequestMethod.GET)

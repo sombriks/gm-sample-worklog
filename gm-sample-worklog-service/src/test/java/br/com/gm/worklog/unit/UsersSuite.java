@@ -43,7 +43,7 @@ public class UsersSuite {
     int i = 10;
     while(i-->0)
       list.add(util.insertUser());
-    assertEquals(list.size(), users.listByName("foo", 0, 10).size());
+    assertEquals(list.size(), users.listByLogin("foo", 0, 10).size());
     list.forEach(u -> users.del(u.getUserId()));
   }
 
