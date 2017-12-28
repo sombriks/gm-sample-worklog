@@ -40,7 +40,7 @@ need to edit this file in order to not explode your machine.
 - Install **'sdkman!'** and then use it to install **grade 4**.
 - Clone locally the repository [https://github.com/sombriks/gm-sample-worklog](https://github.com/sombriks/gm-sample-worklog).
 - Enter the folder containing this README and open a command line on it.
-- Type **"gradle run"**.
+- Type **"gradle bootRun"**.
 - After download all dependencies it will start to listen on 8080 port.
 
 ## How to test this application

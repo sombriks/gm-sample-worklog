@@ -19,13 +19,6 @@ Sample solution to register and summarize work hours
 - java 8
 - tests (unit and integration)
 
-## NFR that might or might not be attended
-
-- the ACID properties are optional (eventual consistency / NoSQL allowed)
-- microservices with Docker
-- kotlin instead java
-- database schema migration system
-
 ## About this project structure
 
 The root repository contains all needed projects to run the complete solution.
