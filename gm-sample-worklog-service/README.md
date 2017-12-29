@@ -21,10 +21,10 @@ This service holds the API and the business logic of the project.
 
 ## Caveats
 
-- Spring Boot gradle plugin only works on gradle 4.x series.
+- Spring Boot gradle plugin only works on gradle 4.x series. An older version installed was removed. 
 - The code plugin [vscode-java](https://github.com/redhat-developer/vscode-java) did not solved import and 
 autocomplete correctly due a limitation about having top-level configuration files instead to use all occurrences of 
-these files. It was solved by using service folder as temporary project root.
+these files. It was solved by using service folder as project root instead repository root.
 - Also, the eclipse plugin was added to build.gradle in order to generate *.classpath* and *.project* files. Then the 
 plugin started to work almost properly.
 - ~~For unknown reason the vscode-java plugin was unable to find javax.persistence packages.~~ 
@@ -51,8 +51,9 @@ Also, you can generate a coverage report by typing **"grade jacocoTestReport"**.
 
 ## How to evolve this application
 
-H2 database is quite neat to fast prototyping however it does not scales well on file mode. We might use it on server 
-mode, or even replace it with Postgresql or Oracle.
+H2 database is quite neat to fast prototyping. It even has a [web console](http://localhost:8080/h2-console) which 
+helps to take a look into the data. However it does not scales well on file mode. We might use it on server mode, or 
+even replace it with Mysql, Postgresql or Oracle.
 
 [Profile configurations](https://docs.spring.io/spring-boot/docs/current/reference/html/howto-properties-and-configuration.html#howto-set-active-spring-profiles) were not set. A production-dedicated profile could optimize, for example, logging, but there's room for improvements.
 

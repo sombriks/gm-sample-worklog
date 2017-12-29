@@ -4,6 +4,9 @@
     <br/>
     <br/>
     <md-card>
+      <md-card-header>
+        <div class="md-title">Register</div>
+      </md-card-header>
       <md-card-content>
         <md-input-container>
           <label>User login</label>
@@ -44,9 +47,23 @@ module.exports = {
   methods: {
     doregister() {
       this.newuser.userHash = md5(this.pwd);
-      api.register(this.newuser).then(ret => {
-        
-      })
+      api
+        .register(this.newuser)
+        .then(ret => {
+          if (ret.status != 200) throw ret;
+          simplestore.user = ret.data;
+          return api.login(this.newuser);
+        })
+        .then(ret => {
+          if (ret.status != 200) throw ret;
+          api.setAuthToken(`Bearer ${ret.data}`);
+          simplestore.persist();
+          window.location.href = "#/";
+        })
+        .catch(e => {
+          console.log(e);
+          alert("Register failed");
+        });
     }
   }
 };

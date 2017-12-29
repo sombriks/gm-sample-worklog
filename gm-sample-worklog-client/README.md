@@ -14,6 +14,7 @@ This client provides a nice user interface so you don't have to use curl to see 
 - [VueMaterial](https://vuematerial.io/)
 - [Axios](https://github.com/axios/axios)
 - [md5](https://www.npmjs.com/package/md5)
+- [moment](https://momentjs.com/)
 
 ## Caveats 
 

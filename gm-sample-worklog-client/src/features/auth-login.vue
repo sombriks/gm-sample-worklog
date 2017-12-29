@@ -4,6 +4,9 @@
     <br/>
     <br/>
     <md-card>
+      <md-card-header>
+        <div class="md-title">Login</div>
+      </md-card-header>
       <md-card-content>
         <md-input-container>
           <label>User login</label>
@@ -36,7 +39,6 @@ module.exports = {
         userHash: ""
       },
       pwd: "",
-      simplestore
     };
   },
   methods: {
@@ -54,9 +56,11 @@ module.exports = {
         })
         .then(ret => {
           if (ret.status != 200) throw ret;
-          api.setAuthToken(ret.data);
+          api.setAuthToken(`Bearer ${ret.data}`);
           simplestore.user = user;
+          simplestore.persist();
           console.log(ret.data);
+          window.location.href="#/"
         })
         .catch(err => {
           console.log(err);

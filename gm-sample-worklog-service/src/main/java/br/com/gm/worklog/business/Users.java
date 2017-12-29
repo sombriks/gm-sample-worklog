@@ -19,9 +19,9 @@ public class Users {
 
   @Cacheable("users")
   public List<VwUser> listByLogin(String query, int start, int size) {
-    return em.createQuery("select u from VwUser u where u.userLogin like :query", VwUser.class)
-        .setParameter("query", "%" + query + "%")//
-        .setFirstResult(start).setMaxResults(size).getResultList();
+    String q = "select u from VwUser u where u.userLogin like :query order by u.userCreation";
+    return em.createQuery(q, VwUser.class).setParameter("query", "%" + query + "%").setFirstResult(start)
+        .setMaxResults(size).getResultList();
   }
 
   @Cacheable("user")
@@ -41,7 +41,8 @@ public class Users {
 
   @Transactional
   public int del(Long userId) {
-    return em.createQuery("delete from User u where u.userId = :id").setParameter("id", userId).executeUpdate();
+    String q = "delete from User u where u.userId = :id";
+    return em.createQuery(q).setParameter("id", userId).executeUpdate();
   }
 
   public User findByLoginAndHash(String userLogin, String userHash) {

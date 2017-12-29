@@ -24,7 +24,8 @@ public class WorkLogs {
 
   @Cacheable("worklogs")
   public List<WorkLog> listbyUser(Long userId, int start, int size) {
-    return em.createQuery("select w from WorkLog w where w.user.userId = :id", WorkLog.class)//
+    String q = "select w from WorkLog w where w.user.userId = :id order by w.workLogCreation desc";
+    return em.createQuery(q, WorkLog.class)
         .setFirstResult(start).setMaxResults(size).setParameter("id", userId).getResultList();
   }
 
@@ -37,7 +38,7 @@ public class WorkLogs {
   @Transactional
   public WorkLog save(WorkLog w) {
     if (overlaps(w).size() == 0) {
-      processStatuses(w);
+      processStatuses(w); 
       return em.merge(w);
     } else
       throw new Exception("[" + w + "] overlaps another WorkLog");

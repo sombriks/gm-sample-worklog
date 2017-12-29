@@ -22,7 +22,8 @@ public class EventLogs {
 
   @Cacheable("eventlogs")
   public List<EventLog> listbyUser(int start, int size) {
-    return em.createQuery("select e from EventLog e", EventLog.class)//
+    String q = "select e from EventLog e order by e.eventLogCreation desc";
+    return em.createQuery(q, EventLog.class)
         .setFirstResult(start).setMaxResults(size).getResultList();
   }
 
