@@ -3,7 +3,10 @@
     <md-layout md-flex="10">
       <span class="md-title">#</span>
     </md-layout>
-    <md-layout md-flex="30">
+    <md-layout md-flex="10">
+      <span class="md-title">Status</span>
+    </md-layout>
+    <md-layout md-flex="20">
       <span class="md-title">User Login</span>
     </md-layout>
     <md-layout md-flex="20">

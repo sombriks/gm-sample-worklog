@@ -28,3 +28,5 @@ exports.listEventLogs = params => api.get("/eventlog", { params })
 exports.listUsers = params => api.get("/user", { params })
 
 exports.listWorkLogs = params => api.get("/worklog", { params })
+
+exports.saveWorkLog = worklog => api.post("/worklog", worklog)

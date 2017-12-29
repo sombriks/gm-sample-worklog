@@ -1,9 +1,9 @@
 <template>
   <md-layout md-gutter md-column>
     <gm-menu></gm-menu>
-    <worklog-new></worklog-new>
+    <worklog-new @onsaveworklog="addnew"></worklog-new>
     <worklog-header></worklog-header>
-    <worklog-resume v-for="w in worklogs" :key="w.workLogId" :worklog="w"></worklog-resume>
+    <worklog-resume v-for="w in worklogs" :key="w.workLogId" :workLog="w"></worklog-resume>
     <md-button class="md-raised md-primary" @click.native="list(10)">Load more</md-button>
   </md-layout>
 </template>
@@ -31,6 +31,9 @@ module.exports = {
       api
         .listWorkLogs({ userId, start })
         .then(ret => (this.worklogs = this.worklogs.concat(ret.data)));
+    },
+    addnew(worklog) {
+      this.worklogs.unshift(worklog)
     }
   }
 };
