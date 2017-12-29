@@ -18,6 +18,9 @@ Vue.material.registerTheme('default', {
   background: 'white'
 })
 
+const MuseUI = require("muse-ui")
+Vue.use(MuseUI)
+
 // a few components
 
 Vue.component("gm-menu", require("./components/gm-menu.vue"))

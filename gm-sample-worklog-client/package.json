@@ -20,6 +20,7 @@
     "material-design-icons-iconfont": "^3.0.3",
     "md5": "^2.2.1",
     "moment": "^2.20.1",
+    "muse-ui": "^2.1.0",
     "vue": "^2.5.13",
     "vue-material": "^0.8.1",
     "vue-router": "^3.0.1"

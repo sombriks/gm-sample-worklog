@@ -15,15 +15,18 @@ This client provides a nice user interface so you don't have to use curl to see 
 - [Axios](https://github.com/axios/axios)
 - [md5](https://www.npmjs.com/package/md5)
 - [moment](https://momentjs.com/)
+- [Muse-ui](http://www.muse-ui.org/#/install)
 
 ## Caveats 
 
 - The vue-material just entered in beta phase and already switched the docs to this latest release. However the 
 regular install still delivers the stable release. In order to get the accurate docs, put your browser to 
 [this site](https://vue-material-old.netlify.com) instead of [this one](https://vuematerial.io).
-- since we have client and service fully decoupled, the 
+- Stable vue-material lacks a decent datepicker. And beta vue-material lacks the entire layout engine. Therefore, we 
+picked the calendar component from [Muse-ui](http://www.muse-ui.org/#/datePicker) and moved on.
+- Since we have client and service fully decoupled, the 
 [CORS](https://developer.mozilla.org/en-US/docs/Glossary/CORS) rules must take place. Spring Boot of course have 
-[a way to fix this](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html)
+[a way to fix this](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/bind/annotation/CrossOrigin.html).
 
 ## How to execute this application
 

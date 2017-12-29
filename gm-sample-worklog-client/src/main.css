@@ -1,3 +1,7 @@
 
 @import "../node_modules/material-design-icons-iconfont/dist/material-design-icons.css";
+
 @import '../node_modules/vue-material/dist/vue-material.css';
+
+@import '../node_modules/muse-ui/dist/muse-ui.css';
+@import '../node_modules/muse-ui/dist/theme-teal.css';
